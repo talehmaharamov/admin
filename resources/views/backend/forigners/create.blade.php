@@ -17,7 +17,7 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label>@lang('backend.name') <span class="text-danger">*</span></label>
-                                    <input type="text" name="name" class="form-control" required="" data-parsley-minlength="6" placeholder="@lang('backend.name')">
+                                    <input type="text" name="name" class="form-control" required=""  placeholder="@lang('backend.name')">
                                     <div class="valid-feedback">
                                         @lang('backend.name') @lang('messages.is-correct')
                                     </div>
@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label>@lang('backend.phone') <span class="text-danger">*</span></label>
-                                    <input type="text" name="phone" class="form-control" required="" data-parsley-minlength="6" placeholder="@lang('backend.phone')">
+                                    <input type="text" name="phone" class="form-control" required=""  placeholder="@lang('backend.phone')">
                                     <div class="valid-feedback">
                                         @lang('backend.phone') @lang('messages.is-correct')
                                     </div>
@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label>@lang('backend.location') <span class="text-danger">*</span></label>
-                                    <input type="text" name="location" class="form-control" required="" data-parsley-minlength="6" placeholder="@lang('backend.location')">
+                                    <input type="text" name="location" class="form-control" required=""  placeholder="@lang('backend.location')">
                                     <div class="valid-feedback">
                                         @lang('backend.location') @lang('messages.is-correct')
                                     </div>
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label>@lang('backend.note'):</label>
-                                    <textarea type="text" name="note" class="form-control" required="" data-parsley-minlength="6" rows="5" placeholder="@lang('backend.note')"></textarea>
+                                    <textarea type="text" name="note" class="form-control" required=""  rows="5" placeholder="@lang('backend.note')"></textarea>
                                     <div class="valid-feedback">
                                         @lang('backend.note') @lang('messages.is-correct')
                                     </div>

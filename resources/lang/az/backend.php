@@ -91,6 +91,7 @@ return array (
   'give-permission' => 'İcazələrin verilməsi',
   'given-date' => 'Verilmə tarixi',
   'go-to-back' => 'Geriyə',
+  'guard-name' => 'Guard adı',
   'history' => 'Tarixçə',
   'home-page' => 'Ana Səhifə',
   'icon' => 'İkon',

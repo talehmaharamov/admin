@@ -18,7 +18,7 @@
                                 @method('PUT')
                                 <div class="mb-3">
                                     <label>@lang('backend.name') <span class="text-danger">*</span></label>
-                                    <input type="text" name="name" class="form-control" required="" value="{{ $forigner->name }}" data-parsley-minlength="6">
+                                    <input type="text" name="name" class="form-control" required="" value="{{ $forigner->name }}" >
                                     <div class="valid-feedback">
                                         @lang('backend.name') @lang('messages.is-correct')
                                     </div>
@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label>@lang('backend.phone') <span class="text-danger">*</span></label>
-                                    <input type="text" name="phone" class="form-control" required="" data-parsley-minlength="6" value="{{ $forigner->phone }}">
+                                    <input type="text" name="phone" class="form-control" required=""  value="{{ $forigner->phone }}">
                                     <div class="valid-feedback">
                                         @lang('backend.phone') @lang('messages.is-correct')
                                     </div>
@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label>@lang('backend.location') <span class="text-danger">*</span></label>
-                                    <input type="text" name="location" class="form-control" required="" data-parsley-minlength="6" value="{{ $forigner->location }}">
+                                    <input type="text" name="location" class="form-control" required=""  value="{{ $forigner->location }}">
                                     <div class="valid-feedback">
                                         @lang('backend.location') @lang('messages.is-correct')
                                     </div>
@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label>@lang('backend.note'):</label>
-                                    <input type="text" name="note" class="form-control" required="" data-parsley-minlength="6" value="{{ $forigner->note }}">
+                                    <input type="text" name="note" class="form-control" required=""  value="{{ $forigner->note }}">
                                     <div class="valid-feedback">
                                         @lang('backend.note') @lang('messages.is-correct')
                                     </div>

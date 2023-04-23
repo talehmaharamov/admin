@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label>@lang('backend.alt') <span class="text-danger">*</span></label>
-                                    <input type="text" name="alt" class="form-control" required="" data-parsley-minlength="6" value="{{ $slider->alt }}">
+                                    <input type="text" name="alt" class="form-control" required=""  value="{{ $slider->alt }}">
                                     <div class="valid-feedback">
                                         @lang('backend.alt') @lang('messages.is-correct')
                                     </div>

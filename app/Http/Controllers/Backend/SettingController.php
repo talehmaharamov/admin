@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helpers\CRUDHelper;
 use App\Http\Requests\Backend\Create\SettingRequest as CreateRequest;
 use App\Http\Requests\Backend\Update\SettingRequest;
 use App\Models\Setting;
@@ -13,34 +14,34 @@ class SettingController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('settings index'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        check_permission('settings index');
         $settings = Setting::all();
         return view('backend.settings.index', get_defined_vars());
     }
 
     public function edit($id)
     {
-        abort_if(Gate::denies('settings edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        check_permission('settings edit');
         $currentSetting = Setting::find($id);
         return view('backend.settings.edit', get_defined_vars());
     }
 
     public function create()
     {
-        abort_if(Gate::denies('settings create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        check_permission('settings create');
         return view('backend.settings.create');
     }
 
     public function store(CreateRequest $request)
     {
-        abort_if(Gate::denies('settings create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        check_permission('settings create');
         try {
             $setting = new Setting();
             $setting->name = $request->name;
             $setting->link = $request->link;
             $setting->status = 1;
             $setting->save();
-            alert()->success(__('messages.success'));
+            alert()->success(__('messages.add-success'));
             return redirect(route('backend.settings.index'));
         } catch (\Exception $e) {
             alert()->error(__('messages.error'));
@@ -50,15 +51,8 @@ class SettingController extends Controller
 
     public function delSetting($id)
     {
-        abort_if(Gate::denies('settings delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        try {
-            Setting::find($id)->delete();
-            alert()->success(__('messages.success'));
-            return redirect(route('backend.settings.index'));
-        } catch (\Exception $e) {
-            alert()->error(__('messages.error'));
-            return redirect(route('backend.settings.index'));
-        }
+        check_permission('settings delete');
+        return CRUDHelper::remove_item('\App\Models\Setting',$id);
     }
 
     public function settingStatus($id)

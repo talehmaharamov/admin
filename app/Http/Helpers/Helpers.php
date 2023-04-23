@@ -85,6 +85,13 @@ if (!function_exists('settings')) {
     }
 }
 
+if (!function_exists('validation_response')) {
+    function validation_response($name)
+    {
+        return '<div class="valid-feedback">' . __($name) . ' ' . __('messages.is-correct') . '</div><div class="invalid-feedback">' . __($name) . ' ' . __('messages.not-correct') . '</div>';
+    }
+}
+
 
 if (!function_exists('convert_number')) {
     function convert_number($value)

@@ -39,7 +39,7 @@
                                                         <label>@lang('backend.name') <span class="text-danger">*</span></label>
                                                         <input name="name[{{ $lan->code }}]" type="text"
                                                                class="form-control"
-                                                               required="" data-parsley-minlength="6"
+                                                               required=""
                                                                placeholder="@lang('backend.name')">
                                                         <div class="valid-feedback">
                                                             @lang('backend.name') @lang('messages.is-correct')
@@ -52,7 +52,7 @@
                                                         <label>@lang('backend.position') <span class="text-danger">*</span></label>
                                                         <input name="position[{{ $lan->code }}]" type="text"
                                                                class="form-control"
-                                                               required="" data-parsley-minlength="6"
+                                                               required=""
                                                                placeholder="@lang('backend.position')">
                                                         <div class="valid-feedback">
                                                             @lang('backend.position') @lang('messages.is-correct')

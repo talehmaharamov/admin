@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helpers\CRUDHelper;
+use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Backend\Create\AdminRequest as CreateRequest;
@@ -14,8 +16,8 @@ class AdminController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('users index'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $users = User::all();
+        check_permission('users index');
+        $users = Admin::all();
         return view('backend.users.index', get_defined_vars());
     }
 
@@ -27,15 +29,8 @@ class AdminController extends Controller
 
     public function delAdmin($id)
     {
-        abort_if(Gate::denies('users delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        try {
-            User::find($id)->delete();
-            alert()->success(__('messages.success'));
-            return redirect()->route('backend.users.index');
-        } catch (\Exception $e) {
-            alert()->error(__('messages.error' . $e));
-            return redirect()->route('backend.users.index');
-        }
+       check_permission('users delete');
+       CRUDHelper::remove_item('App\Models\Admin',$id);
     }
     public function store(CreateRequest $request)
     {

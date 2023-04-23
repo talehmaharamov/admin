@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helpers\CRUDHelper;
+use App\Models\Admin;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -14,23 +17,46 @@ class PermissionController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('permissions index'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        check_permission('permissions index');
         $permissions = Permission::all();
         return view('backend.permissions.index', get_defined_vars());
     }
 
+    public function create()
+    {
+        check_permission('permissions create');
+        return view('backend.permissions.create');
+    }
+
+    public function store(Request $request)
+    {
+        check_permission('permissions create');
+        try {
+            Permission::create([
+                'name' => $request->name,
+                'guard_name' => $request->guardName,
+            ]);
+            alert()->success(__('messages.add-success'));
+            return redirect()->route('backend.permissions.index');
+        } catch (Exception $e) {
+            alert()->error(__('messages.error'));
+            return redirect()->route('backend.permissions.index');
+        }
+    }
+
     public function edit(Permission $permission)
     {
-        abort_if(Gate::denies('permissions edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        check_permission('permissions edit');
         return view('backend.permissions.edit', get_defined_vars());
     }
 
     public function update(Request $request, $id)
     {
-        abort_if(Gate::denies('permissions edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        check_permission('permissions edit');
         try {
             Permission::find($id)->update([
-                'name' => $request->name
+                'name' => $request->name,
+                'guard_name' => $request->guardName,
             ]);
             alert()->success(__('messages.success'));
             return redirect()->route('backend.permissions.index');
@@ -38,68 +64,41 @@ class PermissionController extends Controller
             alert()->error(__('messages.error'));
             return redirect()->route('backend.permissions.index');
         }
-    }
-
-    public function create()
-    {
-        abort_if(Gate::denies('permissions create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        return view('backend.permissions.create');
     }
 
     public function givePermission()
     {
-        abort_if(Gate::denies('new-permission index'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $users = User::all();
+        check_permission('new-permission index');
+        $users = Admin::all();
         return view('backend.permissions.give', get_defined_vars());
     }
 
-    public function giveUserPermission(User $user)
+    public function giveUserPermission(Admin $user)
     {
-        abort_if(Gate::denies('new-permission create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $permissions = Permission::all();
+        check_permission('new-permission create');
+        $permissions = Permission::where('guard_name', 'admin')->orderBy('name','asc')->get();
         return view('backend.permissions.give-user', get_defined_vars());
     }
+
     public function delPermission($id)
     {
-        abort_if(Gate::denies('permissions delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        try {
-            Permission::find($id)->delete();
-            alert()->success(__('messages.success'));
-            return redirect()->route('backend.permissions.index');
-        } catch (Exception $e) {
-            alert()->error(__('messages.error'));
-            return redirect()->route('backend.permissions.index');
-        }
-    }
-    public function giveUserPermissionUpdate(Request $request)
-    {
-        abort_if(Gate::denies('new-permission create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $user = User::find($request->id);
-        try {
-            DB::transaction(function () use ($request, $user) {
-                $user->syncPermissions($request->permissions);
-            });
-            alert()->success(__('messages.success'));
-            return redirect()->route('backend.giveUserPermission', $user->id);
-        } catch (Exception $e) {
-            alert()->error(__('messages.error'));
-            return redirect()->route('backend.giveUserPermission', $user->id);
-        }
+        check_permission('permissions delete');
+        return CRUDHelper::remove_item('\Spatie\Permission\Models\Permission', $id);
     }
 
-    public function store(Request $request)
+    public function giveUserPermissionUpdate(Request $request)
     {
-        abort_if(Gate::denies('permissions create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        check_permission('new-permission create');
+        $admin = Admin::find($request->id);
         try {
-            Permission::create([
-                'name' => $request->name,
-                'guard_name' => 'web',
-            ]);
+            DB::transaction(function () use ($request, $admin) {
+                $admin->syncPermissions($request->permissions);
+            });
             alert()->success(__('messages.success'));
-            return redirect()->route('backend.permissions.index');
+            return redirect()->route('backend.giveUserPermission', $admin->id);
         } catch (Exception $e) {
             alert()->error(__('messages.error'));
-            return redirect()->route('backend.permissions.index');
+            return redirect()->route('backend.giveUserPermission', $admin->id);
         }
     }
 }

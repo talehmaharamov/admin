@@ -32,7 +32,7 @@
                                         <div class="form-group row">
                                             <div class="mb-3">
                                                 <label>@lang('backend.name') <span class="text-danger">*</span></label>
-                                                <input name="name[{{ $lan->code }}]" type="text" class="form-control" value="{{ $director->translate($lan->code)->name }}" required="" data-parsley-minlength="6" placeholder="@lang('backend.name')">
+                                                <input name="name[{{ $lan->code }}]" type="text" class="form-control" value="{{ $director->translate($lan->code)->name }}" required=""  placeholder="@lang('backend.name')">
                                                 <div class="valid-feedback">
                                                     @lang('backend.name') @lang('messages.is-correct')
                                                 </div>
@@ -42,7 +42,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label>@lang('backend.position') <span class="text-danger">*</span></label>
-                                                <input name="position[{{ $lan->code }}]" type="text" value="{{ $director->translate($lan->code)->position }}" class="form-control" required="" data-parsley-minlength="6" placeholder="@lang('backend.position')">
+                                                <input name="position[{{ $lan->code }}]" type="text" value="{{ $director->translate($lan->code)->position }}" class="form-control" required=""  placeholder="@lang('backend.position')">
                                                 <div class="valid-feedback">
                                                     @lang('backend.position') @lang('messages.is-correct')
                                                 </div>

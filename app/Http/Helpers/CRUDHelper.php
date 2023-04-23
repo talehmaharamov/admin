@@ -15,9 +15,9 @@ class CRUDHelper
                 unlink(public_path($modelItem->photo));
             }
             $modelItem->delete();
-            alert()->success(__('messages.success-delete'));
+            alert()->success(__('messages.delete-success'));
         } catch (Exception $e) {
-            alert()->error(__('backend.error-edit'));
+            alert()->error(__('backend.error'));
         }
         return Redirect::back();
     }

@@ -16,7 +16,7 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label>@lang('backend.name') <span class="text-danger">*</span></label>
-                                    <input type="text" id="validationCustom" name="name" class="form-control" required="" data-parsley-minlength="6" value="{{ auth()->user()->name }}">
+                                    <input type="text" id="validationCustom" name="name" class="form-control" required=""  value="{{ auth()->user()->name }}">
                                     <div class="valid-feedback">
                                         @lang('backend.name') @lang('messages.is-correct')
                                     </div>
@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label>@lang('backend.email') <span class="text-danger">*</span></label>
-                                    <input type="text" id="validationCustom" class="form-control" name="email" required="" data-parsley-minlength="6" value="{{ auth()->user()->email }}">
+                                    <input type="text" id="validationCustom" class="form-control" name="email" required=""  value="{{ auth()->user()->email }}">
                                     <div class="valid-feedback">
                                         @lang('backend.email') @lang('messages.is-correct')
                                     </div>
@@ -60,7 +60,7 @@
                                 <input hidden name="id" value="{{ \Illuminate\Support\Facades\Auth::user()->id }}">
                                 <div class="mb-3">
                                     <label>@lang('backend.current-password') <span class="text-danger">*</span></label>
-                                    <input type="password" name="current-password" class="form-control" required="" data-parsley-minlength="6">
+                                    <input type="password" name="current-password" class="form-control" required="" >
                                     <div class="valid-feedback">
 
                                     </div>
@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label>@lang('backend.new-password') <span class="text-danger">*</span></label>
-                                    <input id="pass2" type="password" name="password" class="form-control" required="" data-parsley-minlength="6">
+                                    <input id="pass2" type="password" name="password" class="form-control" required="" >
                                     <div class="valid-feedback">
                                         @lang('backend.new-password') @lang('messages.is-correct')
                                     </div>

@@ -26,17 +26,5 @@ class SettingSeeder extends Seeder
             $set->status = 1;
             $set->save();
         }
-        foreach (active_langs() as $lang) {
-            $sett = new Setting();
-            $sett->name = 'homepage_' . $lang->code;
-            $sett->link = 'Example_' . $lang->code;
-            $sett->status = 1;
-            $sett->save();
-            $address = new Setting();
-            $address->name = 'address_' . $lang->code;
-            $address->link = 'Address_' . $lang->code;
-            $address->status = 1;
-            $address->save();
-        }
     }
 }
