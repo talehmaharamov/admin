@@ -9,18 +9,8 @@
                     </a>
                 </li>
                 <li class="menu-title">@lang('backend.site-setting')</li>
-                <li>
-                    <a href="{{ route('backend.products.index') }}" class="waves-effect">
-                        <i class="fas fa-wine-glass-alt"></i>
-                        <span>@lang('backend.products')</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('backend.services.index') }}" class="waves-effect">
-                        <i class="fas fa-wine-glass-alt"></i>
-                        <span>@lang('backend.services')</span>
-                    </a>
-                </li>
+
+
                 <li>
                     <a href="{{ route('backend.about.index') }}" class="waves-effect">
                         <i class="fas fa-info"></i>
@@ -37,12 +27,6 @@
                     <a href="{{ route('backend.site-languages.index') }}" class="waves-effect">
                         <i class="fas fa-language"></i>
                         <span>@lang('backend.languages')</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('backend.orders') }}" class="waves-effect">
-                        <i class="ri-contacts-fill"></i>
-                        <span>@lang('backend.create-order')</span>
                     </a>
                 </li>
                 <li>

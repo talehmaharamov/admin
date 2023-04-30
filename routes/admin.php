@@ -21,12 +21,13 @@ use App\Http\Controllers\Backend\ReportController as BReport;
 use App\Http\Controllers\Backend\Statistics as BStatistics;
 use App\Http\Controllers\Backend\SliderController as BSlider;
 use App\Http\Controllers\Backend\PermissionController as BPermission;
-use App\Http\Controllers\Backend\OrderController as BOrder;
-use App\Http\Controllers\ProductController;
 
 //General
-use Spatie\Analytics\AnalyticsFacade as Analytics;
 use Spatie\Analytics\Period;
+
+Route::fallback(function () {
+    return view('backend.errors.404');
+});
 Route::get('/login', function () {
     return view('auth.login');
 })->name('loginForm');
@@ -47,15 +48,7 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/posts/aprove/{id}', [BPost::class, 'approvePost'])->name('approvePost');
     Route::get('/slider/{id}/change-order', [BSlider::class, 'sliderOrder'])->name('sliderOrder');
     Route::get('/newsletter/history', [BNewsletter::class, 'newsletterHistory'])->name('newsletterHistory');
-    Route::get('/service/{id}/component', [\App\Http\Controllers\Backend\ServiceController::class, 'component'])->name('serviceComponent');
-    Route::get('/service/{id}/component/create', [\App\Http\Controllers\Backend\ServiceController::class, 'componentCreate'])->name('serviceCreateComponent');
-    Route::post('/service/{id}/component/store', [\App\Http\Controllers\Backend\ServiceController::class, 'storeComponent'])->name('storeComponent');
-    Route::get('/service/component/{id}/edit', [\App\Http\Controllers\Backend\ServiceController::class, 'componentEdit'])->name('editComponent');
-    Route::post('/service/component/{id}/update', [\App\Http\Controllers\Backend\ServiceController::class, 'updateComponent'])->name('updateComponent');
-    Route::get('/service/component/{id}/delete', [\App\Http\Controllers\Backend\ServiceController::class, 'componentDelete'])->name('deleteComponent');
     Route::post('logout', [BAuth::class, 'logout'])->name('logout');
-    Route::get('orders', [BOrder::class, 'index'])->name('orders');
-    Route::get('order/{id}', [BOrder::class, 'read'])->name('orderRead');
 
 //Statuses
     Route::get('/site-language/{id}/change-status', [BSiteLan::class, 'siteLanStatus'])->name('siteLanStatus');
@@ -64,13 +57,11 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/seo/{id}/change-status', [BMeta::class, 'seoStatus'])->name('seoStatus');
     Route::get('/slider/{id}/change-status', [BSlider::class, 'sliderStatus'])->name('sliderStatus');
     Route::get('/post/{id}/change-status', [BPost::class, 'postStatus'])->name('postStatus');
-    Route::get('/products/{id}/change-status', [ProductController::class, 'status'])->name('statusProduct');
-    Route::get('/services/{id}/change-status', [\App\Http\Controllers\Backend\ServiceController::class, 'status'])->name('statusService');
+
 //Delete
     Route::get('/site-languages/{id}/delete', [BSiteLan::class, 'delSiteLang'])->name('delSiteLang');
     Route::get('/categories/{id}/delete', [BCategory::class, 'delCategory'])->name('delCategory');
     Route::get('/contact-us/{id}/delete', [BContact::class, 'delContactUS'])->name('delContactUS');
-    Route::get('/order/{id}/delete', [BOrder::class, 'delete'])->name('delOrder');
     Route::get('/settings/{id}/delete', [BSetting::class, 'delSetting'])->name('delSetting');
     Route::get('/users/{id}/delete', [BAdmin::class, 'delAdmin'])->name('delAdmin');
     Route::get('/seo/{id}/delete', [BMeta::class, 'delSeo'])->name('delSeo');
@@ -80,13 +71,10 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/permission/{id}/delete', [BPermission::class, 'delPermission'])->name('delPermission');
     Route::get('/post/{id}/delete', [BPost::class, 'delPost'])->name('delPost');
     Route::get('/newsletter/{id}/delete', [BNewsletter::class, 'delNewsletter'])->name('delNewsletter');
-    Route::get('/products/{id}/delete', [ProductController::class, 'delete'])->name('delProduct');
-    Route::get('/services/{id}/delete', [\App\Http\Controllers\Backend\ServiceController::class, 'delete'])->name('delService');
 //Resources
     Route::resource('/categories', BCategory::class);
     Route::resource('/site-languages', BSiteLan::class);
     Route::resource('/contact-us', BContact::class);
-    Route::resource('/about', BAbout::class);
     Route::resource('/settings', BSetting::class);
     Route::resource('/users', BAdmin::class);
     Route::resource('/my-informations', BInformation::class);
@@ -96,6 +84,5 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::resource('/statistics', BStatistics::class);
     Route::resource('/slider', BSlider::class);
     Route::resource('/permissions', BPermission::class);
-    Route::resource('/products', ProductController::class);
-    Route::resource('/services', \App\Http\Controllers\Backend\ServiceController::class);
+    Route::resource('/about', BAbout::class);
 });
