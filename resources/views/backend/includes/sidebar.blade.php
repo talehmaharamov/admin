@@ -89,7 +89,7 @@
                         </a>
                     </li>
                 @endcan
-                @can('permission create')
+                @can('permissions create')
                     <li>
                         <a href="{{ route('backend.givePermission') }}" class=" waves-effect">
                             <i class="ri-lock-unlock-fill"></i>
@@ -105,7 +105,7 @@
                         </a>
                     </li>
                 @endcan
-                @can('dod-env index')
+                @can('dodenv index')
                     <li>
                         <a target="_blank" href="{{ url('admin/env') }}" class="waves-effect">
                             <i class="fab fa-envira"></i>

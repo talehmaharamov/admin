@@ -19,6 +19,7 @@ class PermissionsSeeder extends Seeder
             'users',
             'permissions',
             'report',
+            'dodenv',
         ];
         foreach ($permissions as $permission) {
             add_permission($permission);

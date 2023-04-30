@@ -16,7 +16,7 @@ class SettingController extends Controller
     {
         check_permission('settings index');
         $settings = Setting::all();
-        return view('backend.settings.index', get_defined_vars());
+        return view('backend.settings.index',get_defined_vars());
     }
 
     public function edit($id)
