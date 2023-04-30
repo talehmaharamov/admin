@@ -4,11 +4,11 @@
             <div class="navbar-brand-box">
                 <a href="" class="logo logo-light">
                      <span class="logo-sm justify-content-center">
-                         <img src="{{asset('frontend/images/logos/dirnislogo.png')}}" alt="logo-sm-light" height="38">
+                         <img src="{{asset('backend/images/favicon-admin.png')}}" alt="logo-sm-light" height="30">
                      </span>
                     <span class="logo-lg justify-content-center">
-                        <img src="https://i.ibb.co/RgN1ZMr/gefen.png" alt="logo-light" height="50">
-                     </span>
+                        <img src="{{ asset('backend/images/logo.png') }}" alt="logo-light" height="50">
+                    </span>
                 </a>
             </div>
             <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
@@ -60,10 +60,10 @@
                     <i class="mdi mdi-chevron-down d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu">
-                        <a href="{{ route('logout') }}" type="submit" class="dropdown-item text-danger">
-                            <i class="ri-shut-down-line align-middle me-1 text-danger"></i>
-                            @lang('backend.logout')
-                        </a>
+                    <a href="{{ route('logout') }}" type="submit" class="dropdown-item text-danger">
+                        <i class="ri-shut-down-line align-middle me-1 text-danger"></i>
+                        @lang('backend.logout')
+                    </a>
                 </div>
             </div>
         </div>

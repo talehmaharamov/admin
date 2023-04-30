@@ -26,7 +26,7 @@
                                 <th class="text-center">@lang('backend.actions'):</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-center">
                             @foreach($users as $user)
                             <tr>
                                 <td>{{ $user->id }}</td>

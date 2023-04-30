@@ -18,7 +18,7 @@ class InformationPasswordRequest extends FormRequest
         return [
             'password' => ['required', 'min:6'],
             'password_confirmation' => ['required_with:password', 'same:password'],
-            'current-password' => ['required', function ($attribute, $value) {
+            'current_password' => ['required', function ($attribute, $value) {
                 if (!Hash::check($value, Auth::user()->password)) {
                     return redirect()->back()->with('errorPassword', 'Cari şifrənizi düzgün daxil edin!');
                 }

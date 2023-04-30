@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class InformationController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            User::find($id)->update([
+            Admin::find($id)->update([
                 'name' => $request->name,
                 'email' => $request->email,
             ]);
@@ -34,7 +35,7 @@ class InformationController extends Controller
     public function store(PasswordRequest $request)
     {
         try {
-            User::find($request->id)->update([
+            Admin::find($request->id)->update([
                 'password' => Hash::make($request->password),
             ]);
             alert()->success(__('messages.success'));

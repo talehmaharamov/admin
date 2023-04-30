@@ -68,14 +68,14 @@ class PermissionController extends Controller
 
     public function givePermission()
     {
-        check_permission('new-permission index');
+        check_permission('permissions create');
         $users = Admin::all();
         return view('backend.permissions.give', get_defined_vars());
     }
 
     public function giveUserPermission(Admin $user)
     {
-        check_permission('new-permission create');
+        check_permission('permissions create');
         $permissions = Permission::where('guard_name', 'admin')->orderBy('name','asc')->get();
         return view('backend.permissions.give-user', get_defined_vars());
     }
@@ -88,7 +88,7 @@ class PermissionController extends Controller
 
     public function giveUserPermissionUpdate(Request $request)
     {
-        check_permission('new-permission create');
+        check_permission('permissions create');
         $admin = Admin::find($request->id);
         try {
             DB::transaction(function () use ($request, $admin) {
