@@ -36,7 +36,7 @@ class AdminController extends Controller
     {
         abort_if(Gate::denies('users create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         try {
-            $user = User::create([
+            $user = Admin::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),

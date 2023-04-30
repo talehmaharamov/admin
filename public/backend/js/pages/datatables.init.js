@@ -6,14 +6,14 @@ $(document).ready(function () {
                 next: "<i class='mdi mdi-chevron-right'>"
             }
         },
-        order: [[1,'asc']],
+        order: [[1, 'asc']],
         drawCallback: function () {
             $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
         }
     });
     var a = $("#datatable-buttons").DataTable({
         lengthChange: !1,
-        order: [[0,'desc']],
+        order: [[0, 'desc']],
         language: {paginate: {previous: "<i class='mdi mdi-chevron-left'>", next: "<i class='mdi mdi-chevron-right'>"}},
         drawCallback: function () {
             $(".dataTables_paginate > .pagination").addClass("pagination-rounded")

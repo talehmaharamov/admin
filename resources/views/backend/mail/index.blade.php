@@ -106,7 +106,7 @@
 </head>
 
 <body style="
-      background-color: #d2c3aa;
+      background-color: #252b3b;
       margin: 0 !important;
       padding: 0 !important;
     ">
@@ -126,7 +126,7 @@
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <!-- LOGO -->
         <tr>
-            <td bgcolor="#d2c3aa" align="center">
+            <td bgcolor="#252b3b" align="center">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px">
                     <tr>
                         <td align="center" valign="top" style="padding: 40px 10px 40px 10px"></td>
@@ -135,7 +135,7 @@
             </td>
         </tr>
         <tr>
-            <td bgcolor="#d2c3aa" align="center" style="padding: 0px 10px 0px 10px">
+            <td bgcolor="#252b3b" align="center" style="padding: 0px 10px 0px 10px">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px">
                     <tr>
                         <td bgcolor="#ffffff" align="center" valign="top" style="
@@ -183,7 +183,7 @@
                                     <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 60px 30px">
                                         <table border="0" cellspacing="0" cellpadding="0">
                                             <tr>
-                                                <td align="center" style="border-radius: 3px" bgcolor="#d2c3aa">
+                                                <td align="center" style="border-radius: 3px" bgcolor="#252b3b">
                                                     <a href="{{ route('backend.pendingPostId',$post_id) }}" target="_blank" style="
                                 font-size: 20px;
                                 font-family: Helvetica, Arial, sans-serif;
@@ -193,7 +193,7 @@
                                 text-decoration: none;
                                 padding: 15px 25px;
                                 border-radius: 2px;
-                                border: 1px solid #d2c3aa;
+                                border: 1px solid #252b3b;
                                 display: inline-block;
                               ">Paylaşımı təsdiqlə</a>
                                                 </td>
@@ -227,7 +227,7 @@
                   line-height: 25px;
                 ">
                             <p style="margin: 0">
-                                <a href="#" target="_blank" style="color: #d2c3aa"> {{ route('backend.pendingPostId',$post_id) }} </a>
+                                <a href="#" target="_blank" style="color: #252b3b"> {{ route('backend.pendingPostId',$post_id) }} </a>
                             </p>
                         </td>
                     </tr>
@@ -273,7 +273,7 @@
                 ">
 
                             <p style="margin: 0">
-                                <a href="{{ route('frontend.contact-us-page') }}" target="_blank" style="color: #d2c3aa"> Daha çox köməyə ehtiyacınız var?</a>
+                                <a href="{{ route('frontend.contact-us-page') }}" target="_blank" style="color: #252b3b"> Daha çox köməyə ehtiyacınız var?</a>
                             </p>
                         </td>
                     </tr>

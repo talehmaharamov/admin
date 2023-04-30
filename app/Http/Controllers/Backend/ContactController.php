@@ -13,7 +13,7 @@ class ContactController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('contact-us index'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('contact index'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $contacts = Contact::all();
         return view('backend.contact-us.index', get_defined_vars());
     }
@@ -36,7 +36,7 @@ class ContactController extends Controller
 
     public function readContact($id)
     {
-        abort_if(Gate::denies('contact-us index'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('contact index'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $message = Contact::find($id);
         if ($message->read_status == 0) {
             $message->update(['read_status' => 1]);

@@ -32,7 +32,7 @@
                                 <th>@lang('backend.content'):</th>
                                 <th>@lang('backend.time'):</th>
                                 @can('report delete')
-                                <th>@lang('backend.actions'):</th>
+                                <th class="text-center">@lang('backend.actions'):</th>
                                 @endcan
                             </tr>
                         </thead>
@@ -48,7 +48,7 @@
                                 </td>
                                 <td>{{date('d.m.Y H:i:s',strtotime($report->created_at)) }}</td>
                                 @can('report delete')
-                                <td>
+                                <td class="text-center">
                                     <a class="btn btn-danger" href="{{ route('backend.delReport',['id'=>$report->id]) }}">
                                         <i class="fas fa-trash"></i>
                                     </a>

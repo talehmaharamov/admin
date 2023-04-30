@@ -61,7 +61,7 @@ if (!function_exists('add_permission')) {
             foreach ($permission_extensions as $extension) {
                 $permission = new \Spatie\Permission\Models\Permission();
                 $permission->name = $permission_name . ' ' . $extension;
-                $permission->guard_name = 'web';
+                $permission->guard_name = 'admin';
                 $permission->save();
             }
         } catch (Exception $exception) {
