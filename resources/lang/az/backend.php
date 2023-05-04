@@ -1,6 +1,4 @@
-<?php
-
-return array (
+<?php return array (
   'about' => 'Haqqımızda',
   'actions' => 'Hərəkətlər',
   'active' => 'Aktiv',

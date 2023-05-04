@@ -3,9 +3,7 @@
 use App\Http\Controllers\Backend\LanguageController as LChangeLan;
 use App\Http\Controllers\Frontend\AboutController as FAbout;
 use App\Http\Controllers\Frontend\HomeController as FHome;
-use App\Http\Controllers\Frontend\PostController as FPost;
 use App\Http\Controllers\Frontend\CategoryController as FCategory;
-use App\Http\Controllers\Frontend\ServiceController as FSErvice;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => '/', 'as' => 'frontend.', 'middleware' => 'frontLanguage'], function () {
@@ -18,16 +16,11 @@ Route::group(['prefix' => '/', 'as' => 'frontend.', 'middleware' => 'frontLangua
     Route::post('/order/new', [FHome::class, 'newOrder'])->name('newOrder');
     Route::get('/', [FHome::class, 'index'])->name('index');
     Route::get('/about', [FAbout::class, 'index'])->name('about');
-    Route::get('/post/{id}', [FPost::class, 'selectedPost'])->name('selectedPost');
-    Route::get('/news', [FPost::class, 'allPosts'])->name('allPosts');
     Route::get('/categories/{slug}', [FCategory::class, 'index'])->name('selectedCategory');
     Route::post('/search', [FHome::class, 'search'])->name('search');
     Route::post('/newsletter-add-new', [FHome::class, 'newsletter'])->name('newsletter');
     Route::get('/newsletter/{id}/{token}', [FHome::class, 'verifyMail'])->name('verifyMail');
-    Route::get('services', [FSErvice::class, 'index'])->name('services');
-    Route::get('service/{id}', [FSErvice::class, 'show'])->name('selectedService');
     Route::get('18',[FHome::class,'agreeTerm'])->name('18');
-    Route::get('/products',[\App\Http\Controllers\Frontend\ProductController::class,'index'])->name('products');
     Route::get('mail/test', function () {
         return view('backend.mail.send');
     });
