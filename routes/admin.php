@@ -28,10 +28,12 @@ use Spatie\Analytics\Period;
 Route::fallback(function () {
     return view('backend.errors.404');
 });
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('loginForm');
-Route::post('loginAdmin', [BAuth::class, 'login'])->name('login');
+Route::group(['name' => 'auth1'], function () {
+    Route::get('/login', [BAuth::class, 'showLoginForm'])->name('loginForm');
+    Route::post('loginAdmin', [BAuth::class, 'login'])->name('login');
+    Route::post('logout', [BAuth::class, 'logout'])->name('logout');
+});
+
 Route::group(['middleware' => 'auth:admin'], function () {
 //General
     Route::get('/change-language/{lang}', [LChangeLan::class, 'switchLang'])->name('switchLang');
@@ -48,41 +50,56 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/posts/aprove/{id}', [BPost::class, 'approvePost'])->name('approvePost');
     Route::get('/slider/{id}/change-order', [BSlider::class, 'sliderOrder'])->name('sliderOrder');
     Route::get('/newsletter/history', [BNewsletter::class, 'newsletterHistory'])->name('newsletterHistory');
-    Route::post('logout', [BAuth::class, 'logout'])->name('logout');
-
 //Statuses
-    Route::get('/site-language/{id}/change-status', [BSiteLan::class, 'siteLanStatus'])->name('siteLanStatus');
-    Route::get('/categories/{id}/change-status', [BCategory::class, 'categoryStatus'])->name('categoryStatus');
-    Route::get('/settings/{id}/change-status', [BSetting::class, 'settingStatus'])->name('settingStatus');
-    Route::get('/seo/{id}/change-status', [BMeta::class, 'seoStatus'])->name('seoStatus');
-    Route::get('/slider/{id}/change-status', [BSlider::class, 'sliderStatus'])->name('sliderStatus');
-    Route::get('/post/{id}/change-status', [BPost::class, 'postStatus'])->name('postStatus');
+    Route::group(['name' => 'status'], function () {
+Route::get('yoxlas/{id}/change-status',[App\Http\Controllers\Backend\YoxlaController::class,'status'])->name('yoxlaStatus');
 
+Route::get('yoxlas/{id}/change-status',[App\Http\Controllers\Backend\YoxlaController::class,'status'])->name('yoxlaStatus');
+
+        Route::get('/site-language/{id}/change-status', [BSiteLan::class, 'siteLanStatus'])->name('siteLanStatus');
+        Route::get('/categories/{id}/change-status', [BCategory::class, 'categoryStatus'])->name('categoryStatus');
+        Route::get('/settings/{id}/change-status', [BSetting::class, 'settingStatus'])->name('settingStatus');
+        Route::get('/seo/{id}/change-status', [BMeta::class, 'seoStatus'])->name('seoStatus');
+        Route::get('/slider/{id}/change-status', [BSlider::class, 'sliderStatus'])->name('sliderStatus');
+        Route::get('/post/{id}/change-status', [BPost::class, 'postStatus'])->name('postStatus');
+    });
 //Delete
-    Route::get('/site-languages/{id}/delete', [BSiteLan::class, 'delSiteLang'])->name('delSiteLang');
-    Route::get('/categories/{id}/delete', [BCategory::class, 'delCategory'])->name('delCategory');
-    Route::get('/contact-us/{id}/delete', [BContact::class, 'delContactUS'])->name('delContactUS');
-    Route::get('/settings/{id}/delete', [BSetting::class, 'delSetting'])->name('delSetting');
-    Route::get('/users/{id}/delete', [BAdmin::class, 'delAdmin'])->name('delAdmin');
-    Route::get('/seo/{id}/delete', [BMeta::class, 'delSeo'])->name('delSeo');
-    Route::get('/slider/{id}/delete', [BSlider::class, 'delSlider'])->name('delSlider');
-    Route::get('/report/{id}/delete', [BReport::class, 'delReport'])->name('delReport');
-    Route::get('/report/clean-all', [BReport::class, 'cleanAllReport'])->name('cleanAllReport');
-    Route::get('/permission/{id}/delete', [BPermission::class, 'delPermission'])->name('delPermission');
-    Route::get('/post/{id}/delete', [BPost::class, 'delPost'])->name('delPost');
-    Route::get('/newsletter/{id}/delete', [BNewsletter::class, 'delNewsletter'])->name('delNewsletter');
+    Route::group(['name' => 'delete'], function () {
+Route::get('yoxlas/{id}/delete',[App\Http\Controllers\Backend\YoxlaController::class,'delete'])->name('yoxlaDelete');
+
+Route::get('yoxlas/{id}/delete',[App\Http\Controllers\Backend\YoxlaController::class,'delete'])->name('yoxlaDelete');
+
+        Route::get('/site-languages/{id}/delete', [BSiteLan::class, 'delSiteLang'])->name('delSiteLang');
+        Route::get('/categories/{id}/delete', [BCategory::class, 'delCategory'])->name('delCategory');
+        Route::get('/contact-us/{id}/delete', [BContact::class, 'delContactUS'])->name('delContactUS');
+        Route::get('/settings/{id}/delete', [BSetting::class, 'delSetting'])->name('delSetting');
+        Route::get('/users/{id}/delete', [BAdmin::class, 'delAdmin'])->name('delAdmin');
+        Route::get('/seo/{id}/delete', [BMeta::class, 'delSeo'])->name('delSeo');
+        Route::get('/slider/{id}/delete', [BSlider::class, 'delSlider'])->name('delSlider');
+        Route::get('/report/{id}/delete', [BReport::class, 'delReport'])->name('delReport');
+        Route::get('/report/clean-all', [BReport::class, 'cleanAllReport'])->name('cleanAllReport');
+        Route::get('/permission/{id}/delete', [BPermission::class, 'delPermission'])->name('delPermission');
+        Route::get('/post/{id}/delete', [BPost::class, 'delPost'])->name('delPost');
+        Route::get('/newsletter/{id}/delete', [BNewsletter::class, 'delNewsletter'])->name('delNewsletter');
+    });
 //Resources
-    Route::resource('/categories', BCategory::class);
-    Route::resource('/site-languages', BSiteLan::class);
-    Route::resource('/contact-us', BContact::class);
-    Route::resource('/settings', BSetting::class);
-    Route::resource('/users', BAdmin::class);
-    Route::resource('/my-informations', BInformation::class);
-    Route::resource('/posts', BPost::class);
-    Route::resource('/seo', BMeta::class);
-    Route::resource('/newsletter', BNewsletter::class);
-    Route::resource('/statistics', BStatistics::class);
-    Route::resource('/slider', BSlider::class);
-    Route::resource('/permissions', BPermission::class);
-    Route::resource('/about', BAbout::class);
+    Route::group(['name' => 'resource'], function () {
+Route::resource('/yoxlas',App\Http\Controllers\Backend\YoxlaController::class);
+
+Route::resource('/yoxlas',App\Http\Controllers\Backend\YoxlaController::class);
+
+        Route::resource('/categories', BCategory::class);
+        Route::resource('/site-languages', BSiteLan::class);
+        Route::resource('/contact-us', BContact::class);
+        Route::resource('/settings', BSetting::class);
+        Route::resource('/users', BAdmin::class);
+        Route::resource('/my-informations', BInformation::class);
+        Route::resource('/posts', BPost::class);
+        Route::resource('/seo', BMeta::class);
+        Route::resource('/newsletter', BNewsletter::class);
+        Route::resource('/statistics', BStatistics::class);
+        Route::resource('/slider', BSlider::class);
+        Route::resource('/permissions', BPermission::class);
+        Route::resource('/about', BAbout::class);
+    });
 });

@@ -10,7 +10,14 @@
     @include('backend.includes.header')
 </div>
 @include('backend.includes.sidebar')
-@yield('content')
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            @yield('content')
+        </div>
+    </div>
+</div>
+
 @include('sweetalert::alert')
 @include('backend.includes.scripts')
 @yield('scripts')

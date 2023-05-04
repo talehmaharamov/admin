@@ -10,7 +10,7 @@
                 </li>
                 <li class="menu-title">@lang('backend.site-setting')</li>
 
-
+{{--{{ creation('Yoxla','Yoxla',true) }}--}}
                 <li>
                     <a href="{{ route('backend.about.index') }}" class="waves-effect">
                         <i class="fas fa-info"></i>

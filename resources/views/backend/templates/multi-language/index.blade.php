@@ -30,28 +30,7 @@
                         <td>{{ $category->id }}</td>
                         <td>{{ $category->slug }}</td>
                         <td>{{ date('d.m.Y H:i:s',strtotime($category->created_at)) }}</td>
-{{--                       @include('backend.templates.components.dt-settings')--}}
-                        <td class="text-center">
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-cog"></i>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
-                                    <div class="d-flex justify-content-center align-items-center">
-                                        <a href="{{ route('backend.categoryStatus',['id'=>$category->id]) }}"
-                                           title="@lang('backend.status')">
-                                            <input type="checkbox" id="switch"
-                                                   switch="primary" {{ $category->status == 1 ? 'checked' : '' }} />
-                                            <label for="switch4"></label>
-                                        </a>
-                                    </div>
-                                    <a class="dropdown-item" href="{{ route('backend.categories.edit',['category'=>$category->id]) }}">@lang('backend.edit')</a>
-                                    <a class="dropdown-item "
-                                       href="{{ route('backend.delCategory',['id'=>$category->id]) }}">@lang('backend.delete')</a>
-                                </div>
-                            </div>
-                        </td>
-
+                        @include('backend.templates.components.dt-settings')
                     </tr>
                 @endforeach
                 </tbody>

@@ -21,5 +21,15 @@ class CRUDHelper
         }
         return Redirect::back();
     }
+    public static function status($model, $id): \Illuminate\Http\RedirectResponse
+    {
+        $status = $model::where('id', $id)->value('status');
+        if ($status == 1) {
+            $model::where('id', $id)->update(['status' => 0]);
+        } else {
+            $model::where('id', $id)->update(['status' => 1]);
+        }
+        return Redirect::back();
+    }
 }
 
