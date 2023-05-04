@@ -14,7 +14,8 @@ class CreateDeleteRoute extends Command
         $name = $this->argument('name');
         $controller = $this->argument('controller');
         $controllerName = "{$controller}Controller";
-        $routeName = Str::plural(Str::snake($name));
+//        $routeName = Str::plural(Str::snake($name));
+        $routeName = $name;
         $routePath = base_path('routes/admin.php');
         $controllerNamespace = Str::of("App\Http\Controllers\Backend\\")->append($controllerName);
         $newRoute = "\nRoute::get('{$routeName}/{id}/delete',[$controllerNamespace::class,'delete'])->name('{$name}Delete');\n";

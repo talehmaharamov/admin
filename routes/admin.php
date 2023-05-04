@@ -52,10 +52,6 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/newsletter/history', [BNewsletter::class, 'newsletterHistory'])->name('newsletterHistory');
 //Statuses
     Route::group(['name' => 'status'], function () {
-Route::get('yoxlas/{id}/change-status',[App\Http\Controllers\Backend\YoxlaController::class,'status'])->name('yoxlaStatus');
-
-Route::get('yoxlas/{id}/change-status',[App\Http\Controllers\Backend\YoxlaController::class,'status'])->name('yoxlaStatus');
-
         Route::get('/site-language/{id}/change-status', [BSiteLan::class, 'siteLanStatus'])->name('siteLanStatus');
         Route::get('/categories/{id}/change-status', [BCategory::class, 'categoryStatus'])->name('categoryStatus');
         Route::get('/settings/{id}/change-status', [BSetting::class, 'settingStatus'])->name('settingStatus');
@@ -65,10 +61,6 @@ Route::get('yoxlas/{id}/change-status',[App\Http\Controllers\Backend\YoxlaContro
     });
 //Delete
     Route::group(['name' => 'delete'], function () {
-Route::get('yoxlas/{id}/delete',[App\Http\Controllers\Backend\YoxlaController::class,'delete'])->name('yoxlaDelete');
-
-Route::get('yoxlas/{id}/delete',[App\Http\Controllers\Backend\YoxlaController::class,'delete'])->name('yoxlaDelete');
-
         Route::get('/site-languages/{id}/delete', [BSiteLan::class, 'delSiteLang'])->name('delSiteLang');
         Route::get('/categories/{id}/delete', [BCategory::class, 'delCategory'])->name('delCategory');
         Route::get('/contact-us/{id}/delete', [BContact::class, 'delContactUS'])->name('delContactUS');
@@ -84,9 +76,6 @@ Route::get('yoxlas/{id}/delete',[App\Http\Controllers\Backend\YoxlaController::c
     });
 //Resources
     Route::group(['name' => 'resource'], function () {
-Route::resource('/yoxlas',App\Http\Controllers\Backend\YoxlaController::class);
-
-Route::resource('/yoxlas',App\Http\Controllers\Backend\YoxlaController::class);
 
         Route::resource('/categories', BCategory::class);
         Route::resource('/site-languages', BSiteLan::class);

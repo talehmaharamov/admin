@@ -25,6 +25,7 @@ class PermissionsSeeder extends Seeder
             add_permission($permission);
         }
         $singlePermissions = [
+            'new-element',
             'contact index',
             'contact delete',
             'about index',

@@ -9,12 +9,14 @@ class CreateStatusRoute extends Command
 {
     protected $signature = 'create-status-route {name} {controller}';
     protected $description = 'Command description';
+
     public function handle()
     {
         $name = $this->argument('name');
         $controller = $this->argument('controller');
         $controllerName = "{$controller}Controller";
-        $routeName = Str::plural(Str::snake($name));
+//        $routeName = Str::plural(Str::snake($name));
+        $routeName = $name;
         $routePath = base_path('routes/admin.php');
         $controllerNamespace = Str::of("App\Http\Controllers\Backend\\")->append($controllerName);
         $newRoute = "\nRoute::get('{$routeName}/{id}/change-status',[$controllerNamespace::class,'status'])->name('{$name}Status');\n";
