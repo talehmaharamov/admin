@@ -120,4 +120,5 @@
   'congrats' => 'Congratulations!',
   'success-subs' => 'Uğurla abone oldunuz',
   'history' => 'History',
+  'gallery' => '',
 );

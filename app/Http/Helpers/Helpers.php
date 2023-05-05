@@ -48,6 +48,7 @@ if (!function_exists('multi_upload')) {
             return $result;
         } catch (Exception $e) {
             return redirect()->back();
+
         }
     }
 }
@@ -56,10 +57,12 @@ if (!function_exists('creation')) {
     function creation($name, $modelName = null, $translateModel = false)
     {
         Artisan::call('make:controller Backend/' . $name . 'Controller --resource');
-        Artisan::call('create-status-route ' . Str::lower($name) .' '.$name);
-        Artisan::call('create-delete-route ' . Str::lower($name) .' '.$name);
-        Artisan::call('create-resource-route ' . Str::lower($name) .' '.$name);
+        Artisan::call('create-status-route ' . Str::lower($name) . ' ' . $name);
+        Artisan::call('create-delete-route ' . Str::lower($name) . ' ' . $name);
+        Artisan::call('create-resource-route ' . Str::lower($name) . ' ' . $name);
         Artisan::call('make:controller Api/' . $name . 'Controller');
+        $permissionSeederCommand = "sed -i \"s/\\\$permissions = \\\[/\\\$permissions = \\\[\\n        '".Str::lower($name)."',/\" database/seeders/PermissionsSeeder.php";
+        exec($permissionSeederCommand);
         if ($modelName != null) {
             Artisan::call('make:model ' . $modelName . ' -m');
         }

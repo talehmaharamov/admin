@@ -3,4 +3,5 @@
   'name' => 'Name',
   'products' => 'Products',
   'surname' => 'Surname',
+  'gallery' => '',
 );

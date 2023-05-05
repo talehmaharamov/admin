@@ -1,5 +1,5 @@
 @extends('master.backend')
-@section('title',__('backend.categories'))
+@section('title',__('backend.selection'))
 @section('styles')
     @include('backend.templates.components.dt-styles')
 @endsection
@@ -8,8 +8,8 @@
         <div class="card-body">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">@lang('backend.categories'):</h4>
-                    <a href="{{ route('backend.categories.create') }}" class="btn btn-primary mb-3"><i
+                    <h4 class="mb-sm-0">@lang('backend.selection'):</h4>
+                    <a href="{{ route('backend.selection.create') }}" class="btn btn-primary mb-3"><i
                             class="fas fa-plus"></i> &nbsp;@lang('backend.add-new')
                     </a>
                 </div>
@@ -25,12 +25,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($categories as $category)
+                @foreach($selections as $selection)
                     <tr>
-                        <td>{{ $category->id }}</td>
-                        <td>{{ $category->slug }}</td>
-                        <td>{{ date('d.m.Y H:i:s',strtotime($category->created_at)) }}</td>
-                        @include('backend.templates.components.dt-settings')
+                        <td>{{ $selection->id }}</td>
+                        <td>{{ $selection->slug }}</td>
+                        <td>{{ date('d.m.Y H:i:s',strtotime($selection->created_at)) }}</td>
+                        @include('backend.templates.components.dt-settings',['selection' => 'selection'])
                     </tr>
                 @endforeach
                 </tbody>
