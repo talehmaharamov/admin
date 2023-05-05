@@ -48,6 +48,7 @@ if (!function_exists('multi_upload')) {
             return $result;
         } catch (Exception $e) {
             return redirect()->back();
+
         }
     }
 }
